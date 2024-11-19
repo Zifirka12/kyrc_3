@@ -5,16 +5,16 @@ from src.vacan import Vacancy
 from src.conf import config
 
 companies_id = [
-    "9140614",
+    "4344489",
     "8639172",
     "988247",
     "5912899",
     "11456714",
     "2439690",
-    "5173502",
-    "4204313",
+    "6098532",
+    "9574451",
     "10819001",
-    "11028611",
+    "851716",
 ]
 
 
@@ -22,7 +22,7 @@ def main():
     params = config()
     vacancies = HeadHunterApi(companies_id)
     if vacancies.get_vacancies() != [[]]:
-        user_input = input("Введите ключевое слово для поиска вакансий: ")
+        user_input = input("Введите слово для поиска вакансий: ")
         create_db("HHApi", params)
         for vacancy in vacancies.get_vacancies()[0]:
             vac = Vacancy(vacancy)
@@ -35,10 +35,10 @@ def main():
         vacancies_with_keyword = DBMan.get_vacancies_with_keyword(user_input)
 
         print(
-            f"""Компании и их количество вакансий: {companies_and_vacancies_count}
+            f"""Компании и количество вакансий: {companies_and_vacancies_count}
         Все вакансии: {all_vacancies}
-        Средняя зарплата по вакансиям: {avg_salary}
-        Вакансии с зарплатой выше среднего: {vacancies_with_higher_salary}
+        Средняя зп по вакансиям: {avg_salary}
+        Вакансии с зп выше среднего: {vacancies_with_higher_salary}
         Вакансии с ключевым словом в названии {vacancies_with_keyword}"""
         )
 
